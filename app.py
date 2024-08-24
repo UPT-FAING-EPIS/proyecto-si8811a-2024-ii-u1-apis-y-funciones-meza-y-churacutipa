@@ -22,7 +22,7 @@ def index():
     if not session.get("user"):
         return redirect(url_for("login"))
     return f"Hello, {session['user']['name']}!"
-
+# Funcion Login
 @app.route('/login')
 def login():
     
