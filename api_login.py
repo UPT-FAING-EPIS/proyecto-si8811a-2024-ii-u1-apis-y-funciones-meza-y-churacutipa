@@ -1,15 +1,19 @@
 from flask import Flask, redirect, url_for, session, request
 from msal import ConfidentialClientApplication
+from dotenv import load_dotenv
+
 import os
 
 app = Flask(__name__)
 app.secret_key = ''
 
-CLIENT_ID = ""
-CLIENT_SECRET = ""
-AUTHORITY = ""
-REDIRECT_PATH = "/getAToken"  
-SCOPE = ["User.Read"]  
+load_dotenv()
+
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+AUTHORITY = os.getenv("AUTHORITY")
+REDIRECT_PATH = os.getenv("REDIRECT_PATH")
+SCOPE = ["User.Read"]
 
 app_msal = ConfidentialClientApplication(
     CLIENT_ID,
