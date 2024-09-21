@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-app.secret_key = ''
+app.secret_key = os.urandom(24)
 
 load_dotenv()
 
@@ -25,11 +25,10 @@ app_msal = ConfidentialClientApplication(
 def index():
     if not session.get("user"):
         return redirect(url_for("login"))
-    return f"Hello, {session['user']['name']}!"
-# Funcion Login
+    return f"Hello, {session['user']['name']}! Roles: {session.get('roles', [])}"
+
 @app.route('/login')
 def login():
-    
     auth_url = app_msal.get_authorization_request_url(
         SCOPE,
         redirect_uri=url_for("authorized", _external=True)
@@ -53,6 +52,11 @@ def authorized():
         access_token = result['access_token']
         print(f"Access Token: {access_token}")  
         session["user"] = result.get("id_token_claims")
+
+        # Verificar roles
+        roles = result.get('id_token_claims', {}).get('roles', [])
+        session['roles'] = roles
+
         return redirect(url_for("index"))
     else:
         print(f"Error: {result.get('error')}, Description: {result.get('error_description')}")  
@@ -65,6 +69,20 @@ def logout():
         AUTHORITY + "/oauth2/v2.0/logout" +
         "?post_logout_redirect_uri=" + url_for("index", _external=True)
     )
+
+@app.route('/admin')
+def admin():
+    if 'roles' in session and 'admin' in session['roles']:
+        return "Bienvenido al área de administración."
+    else:
+        abort(403)  # Prohibido
+
+@app.route('/user')
+def user():
+    if 'roles' in session and 'user' in session['roles']:
+        return "Bienvenido al área de usuario."
+    else:
+        abort(403)  # Prohibido
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
