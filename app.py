@@ -1,20 +1,36 @@
-from flask import Flask, redirect, url_for, session, request
+from flask import Flask, redirect, url_for, session, request, abort
 from msal import ConfidentialClientApplication
 from dotenv import load_dotenv
-
+from pymongo import MongoClient
+import certifi
 import os
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET_KEY")
 
+# Cargar las variables del archivo .env
 load_dotenv()
 
+# Configurar la clave secreta para las sesiones
+app.secret_key = os.getenv("SECRET_KEY", "default_secret_key")
+
+# Variables de entorno para la autenticación
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 AUTHORITY = os.getenv("AUTHORITY")
 REDIRECT_PATH = os.getenv("REDIRECT_PATH")
 SCOPE = ["User.Read"]
 
+# Conexión a MongoDB Atlas
+MONGO_URI = os.getenv("MONGO_URI")
+client = MongoClient(
+    MONGO_URI,
+    tls=True,
+    tlsCAFile=certifi.where()
+)
+db = client['db_Upt_Usuarios']  # Nombre de la base de datos
+accesos_users_collection = db['Accesos_users']  # Nombre de la colección
+
+# Configurar la aplicación MSAL
 app_msal = ConfidentialClientApplication(
     CLIENT_ID,
     authority=AUTHORITY,
@@ -56,6 +72,21 @@ def authorized():
         # Verificar roles
         roles = result.get('id_token_claims', {}).get('roles', [])
         session['roles'] = roles
+
+        # Guardar usuario en MongoDB
+        email = session["user"].get("preferred_username")  # Asegúrate de que este campo contiene el correo
+        name = session["user"].get("name")
+
+        if email:  # Si el correo existe
+            user_data = {
+                "email": email,
+                "name": name,
+                "status": "attempted_login",  # Puedes cambiar esto a lo que necesites
+                "roles": roles
+            }
+            # Insertar o actualizar el usuario en la base de datos
+            accesos_users_collection.update_one({"email": email}, {"$set": user_data}, upsert=True)
+            print(f"Usuario {email} guardado/actualizado en la base de datos.")
 
         return redirect(url_for("index"))
     else:
