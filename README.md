@@ -1,3 +1,15 @@
+## Objetivos del Proyecto con Enfoque en Azure
+
+1. **Autenticación con Azure AD**: 
+   Implementar un sistema de inicio de sesión utilizando Microsoft Azure Active Directory (Azure AD), permitiendo solo el acceso a correos electrónicos autorizados de la organización.
+
+2. **Control de Acceso Basado en Roles**: 
+   Implementar un control de acceso que limite el acceso a diferentes partes de la aplicación según los roles de usuario asignados en Azure AD (por ejemplo, `admin`, `user`).
+
+3. **Seguridad Mejorada**: 
+   Proteger información sensible utilizando conexiones seguras y validación de tokens de Azure AD.
+
+
 # Flujo de Autenticación con Azure AD, Flask y MongoDB
 
 Esta aplicación web Flask integra Azure Active Directory (Azure AD) para la autenticación de usuarios y MongoDB para almacenar perfiles y roles de usuarios. A continuación, se incluye una breve descripción general de cómo funciona el sistema:
@@ -30,19 +42,6 @@ Esta aplicación web Flask integra Azure Active Directory (Azure AD) para la aut
 - El usuario puede cerrar sesión, lo que borra su sesión y lo redirige a la página de cierre de sesión de Azure AD.
 
 
-
-## Objetivos del Proyecto con Enfoque en Azure
-
-1. **Autenticación con Azure AD**: 
-   Implementar un sistema de inicio de sesión utilizando Microsoft Azure Active Directory (Azure AD), permitiendo solo el acceso a correos electrónicos autorizados de la organización.
-
-2. **Control de Acceso Basado en Roles**: 
-   Implementar un control de acceso que limite el acceso a diferentes partes de la aplicación según los roles de usuario asignados en Azure AD (por ejemplo, `admin`, `user`).
-
-3. **Seguridad Mejorada**: 
-   Proteger información sensible utilizando conexiones seguras y validación de tokens de Azure AD.
-
-
 ## Tecnologías Utilizadas
 
  - **Flask**: Un micro framework web para construir el backend de la aplicación.
@@ -51,4 +50,12 @@ Esta aplicación web Flask integra Azure Active Directory (Azure AD) para la aut
  - **MongoDB**: Base de datos NoSQL para almacenar información y roles de perfiles de usuario.
  - **dotenv**: Para manejar variables de entorno desde un archivo `.env`.
  - **certifi**: Para asegurar las conexiones TLS a MongoDB.
+
+## Instalación de Dependencias
+
+Para instalar las dependencias del proyecto, asegúrate de tener Python y pip instalados en tu sistema. Luego, puedes ejecutar el siguiente comando en la raíz del proyecto:
+
+```bash
+pip install -r requirements.txt
+
 
