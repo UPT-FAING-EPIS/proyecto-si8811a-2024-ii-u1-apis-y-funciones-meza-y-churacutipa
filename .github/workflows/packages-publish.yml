@@ -1,0 +1,38 @@
+name: Build and Push Docker Image to GitHub Packages
+
+on:
+  push:
+    branches:
+      - desarrollo
+  pull_request:
+    branches:
+      - desarrollo
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push Docker image to GitHub Packages
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        push: true
+        tags: ghcr.io/${{ github.repository }}/login_api:late # Cambia 'your-image' por el nombre deseado
+
+    - name: Verify Docker image from GitHub Packages
+      run: |
+        docker pull ghcr.io/${{ github.repository }}/your-image:latest  # Verificar la imagen desde GitHub Packages
