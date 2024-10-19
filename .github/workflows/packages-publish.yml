@@ -31,8 +31,8 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/upt-faing-epis/proyecto-si8811a-2024-ii-u1-apis-y-funciones-meza-y-churacutipa/login_api:late
+        tags: ghcr.io/upt-faing-epis/proyecto-si8811a-2024-ii-u1-apis-y-funciones-meza-y-churacutipa/login_api:latest  # Cambiado a minúsculas
 
     - name: Verify Docker image from GitHub Packages
       run: |
-        docker pull ghcr.io/${{ github.repository }}/your-image:latest  # Verificar la imagen desde GitHub Packages
+        docker pull ghcr.io/upt-faing-epis/proyecto-si8811a-2024-ii-u1-apis-y-funciones-meza-y-churacutipa/login_api:latest  # Verificar la imagen en minúsculas
