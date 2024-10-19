@@ -26,7 +26,7 @@ jobs:
       uses: docker/login-action@v2
       with:
         username: 'marcomeza14'
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        password: 'carvic150181'
 
     # 4. Build and push Docker image with the 'late' tag
     - name: Build and push Docker image
