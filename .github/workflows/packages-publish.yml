@@ -31,7 +31,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/${{ github.repository }}/login_api:late # Cambia 'your-image' por el nombre deseado
+        tags: ghcr.io/upt-faing-epis/proyecto-si8811a-2024-ii-u1-apis-y-funciones-meza-y-churacutipa/login_api:late
 
     - name: Verify Docker image from GitHub Packages
       run: |
