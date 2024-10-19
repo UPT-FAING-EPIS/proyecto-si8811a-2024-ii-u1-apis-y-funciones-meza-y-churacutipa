@@ -158,3 +158,6 @@ Los datos almacenados incluyen:
 - **roles**: Roles asignados al usuario.
 - **status**: Estado de autenticación.
 - **last_login**: Última fecha de inicio de sesión.
+
+Video :
+[URL Video](https://youtu.be/e52IbrZbrQQ)
