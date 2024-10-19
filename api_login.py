@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from pymongo import MongoClient
 import certifi
 import os
+from datetime import datetime  # Importar datetime
 
 app = Flask(__name__)
 
@@ -82,10 +83,15 @@ def authorized():
                 "email": email,
                 "name": name,
                 "status": "attempted_login",  # Puedes cambiar esto a lo que necesites
-                "roles": roles
+                "roles": roles,
+                "last_login": datetime.utcnow()  # Guardar la hora actual en UTC
             }
             # Insertar o actualizar el usuario en la base de datos
-            accesos_users_collection.update_one({"email": email}, {"$set": user_data}, upsert=True)
+            accesos_users_collection.update_one(
+                {"email": email}, 
+                {"$set": user_data}, 
+                upsert=True
+            )
             print(f"Usuario {email} guardado/actualizado en la base de datos.")
 
         return redirect(url_for("index"))
