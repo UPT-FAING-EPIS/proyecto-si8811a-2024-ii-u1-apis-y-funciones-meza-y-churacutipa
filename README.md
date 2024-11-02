@@ -31,10 +31,14 @@ Esta API sigue un flujo de autenticación utilizando **Azure AD** y **MSAL**. El
 graph TD
     A[Usuario] -->|No autenticado| B[Redirige a<br>/login]
     B --> C[Azure AD:<br> autenticación]
+    B --> H[Google Cloud:<br> autenticación]
     C --> D[Azure AD<br>devuelve código<br>de autorización]
+    H --> I[Google Cloud<br>devuelve código<br>de autorización]
     D --> E[API intercambia<br>código por token]
+    I --> E
     E --> F[Obtiene info<br>de perfil y roles]
     F --> G[Redirige a<br>página principal]
+
 ```
 ### Flujo de Control de Acceso Basado en Roles
 
@@ -53,6 +57,7 @@ graph TD
 - **Python Dotenv**: Maneja variables de entorno desde un archivo `.env`.
 - **Certifi**: Para asegurar conexiones TLS confiables con MongoDB.
 - **Gunicorn**: Servidor WSGI para servir la aplicación Flask en producción.
+- **Google Cloud**: Plataforma en la nube que proporciona servicios adicionales como autenticación alternativa, almacenamiento y análisis, y puede complementar la infraestructura junto con Azure, permitiendo un entorno híbrido.
 
 ## Instalación y Configuración
 
@@ -72,11 +77,12 @@ pip install -r requirements.txt
 ```
 Configurar las variables de entorno: Crea un archivo .env basado en el archivo .env.example y completa las variables requeridas:
 ```bash
-CLIENT_ID=<tu_cliente_id_de_azure>
-CLIENT_SECRET=<tu_cliente_secreto_de_azure>
-AUTHORITY=https://login.microsoftonline.com/<tu_tenant_id>
-REDIRECT_PATH=/authorized
-MONGO_URI=<tu_uri_de_mongodb>
+SECRET_KEY=valor_a_reemplazar
+CLIENT_ID=valor_a_reemplazar
+CLIENT_SECRET=valor_a_reemplazar
+AUTHORITY=valor_a_reemplazar
+REDIRECT_PATH=valor_a_reemplazar
+MONGO_URI=valor_a_reemplazar
 ```
 
 Iniciar la aplicación: Ejecuta la aplicación localmente:
