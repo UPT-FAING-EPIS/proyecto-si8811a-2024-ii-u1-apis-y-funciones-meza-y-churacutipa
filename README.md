@@ -175,7 +175,12 @@ Video :
 graph TD
 
     %% Definición de actores
-    Usuario[Usuario] --> "Iniciar Sesión"
+    actor Usuario
+    actor "Sistema de administración" as admin
+    actor "Sistema de seguridad" as seguridad
+
+    %% Casos de uso del módulo de usuario
+    Usuario --> "Iniciar Sesión"
     Usuario --> "Seleccionar exámenes para practicar"
     Usuario --> "Consultar institutos de certificación"
     Usuario --> "Visualizar fechas de exámenes"
@@ -184,42 +189,34 @@ graph TD
     Usuario --> "Gestionar Perfil"
     Usuario --> "Registrarse en el sistema"
 
-    admin["Sistema de administración"] --> "Actualizar información de institutos y fechas de exámenes"
+    %% Casos de uso del módulo de administración
+    admin --> "Actualizar información de institutos y fechas de exámenes"
     admin --> "Verificar y actualizar precios de exámenes"
     admin --> "Gestionar usuarios y seguridad"
     admin --> "Administrar recursos de preparación"
 
-    seguridad["Sistema de seguridad"] --> "Validar identidad de usuario"
+    %% Casos de uso del módulo de seguridad
+    seguridad --> "Validar identidad de usuario"
     seguridad --> "Verificar intentos de acceso y autenticación"
 
-    %% Definición de módulos
-    class "Módulo de Usuario" {
-        +Iniciar Sesión
-        +Seleccionar exámenes para practicar
-        +Consultar institutos de certificación
-        +Visualizar fechas de exámenes
-        +Comparar precios de Exámenes
-        +Acceder a recursos de preparación
-        +Gestionar Perfil
-        +Registrarse en el sistema
-    }
+    %% Relación de módulos
+    "Iniciar Sesión" --> "Módulo de Usuario"
+    "Seleccionar exámenes para practicar" --> "Módulo de Usuario"
+    "Consultar institutos de certificación" --> "Módulo de Usuario"
+    "Visualizar fechas de exámenes" --> "Módulo de Usuario"
+    "Comparar precios de Exámenes" --> "Módulo de Usuario"
+    "Acceder a recursos de preparación" --> "Módulo de Usuario"
+    "Gestionar Perfil" --> "Módulo de Usuario"
+    "Registrarse en el sistema" --> "Módulo de Usuario"
 
-    class "Módulo de Administración" {
-        +Actualizar información de institutos y fechas de exámenes
-        +Verificar y actualizar precios de exámenes
-        +Gestionar usuarios y seguridad
-        +Administrar recursos de preparación
-    }
+    "Actualizar información de institutos y fechas de exámenes" --> "Módulo de Administración"
+    "Verificar y actualizar precios de exámenes" --> "Módulo de Administración"
+    "Gestionar usuarios y seguridad" --> "Módulo de Administración"
+    "Administrar recursos de preparación" --> "Módulo de Administración"
 
-    class "Módulo de Seguridad" {
-        +Validar identidad de usuario
-        +Verificar intentos de acceso y autenticación
-    }
+    "Validar identidad de usuario" --> "Módulo de Seguridad"
+    "Verificar intentos de acceso y autenticación" --> "Módulo de Seguridad"
 
-    %% Relacionar actores con módulos
-    Usuario --> "Módulo de Usuario"
-    admin --> "Módulo de Administración"
-    seguridad --> "Módulo de Seguridad"
 
 
 
