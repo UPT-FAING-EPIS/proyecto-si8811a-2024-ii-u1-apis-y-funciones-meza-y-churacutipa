@@ -197,7 +197,3 @@ usecaseDiagram
     Seguridad --> (Verificar intentos de acceso y autenticación)
 
 
-
-
-```
-
