@@ -172,50 +172,29 @@ Video :
 
 ```mermaid
 %% Diagrama de Casos de Uso - Sistema de Examen
-graph TD
+%% Usando la sintaxis correcta para casos de uso en Mermaid
 
-    %% Definición de actores
-    actor Usuario
-    actor "Sistema de administración" as admin
-    actor "Sistema de seguridad" as seguridad
+usecaseDiagram
+    actor Usuario as U
+    actor "Sistema de administración" as Admin
+    actor "Sistema de seguridad" as Seguridad
 
-    %% Casos de uso del módulo de usuario
-    Usuario --> "Iniciar Sesión"
-    Usuario --> "Seleccionar exámenes para practicar"
-    Usuario --> "Consultar institutos de certificación"
-    Usuario --> "Visualizar fechas de exámenes"
-    Usuario --> "Comparar precios de Exámenes"
-    Usuario --> "Acceder a recursos de preparación"
-    Usuario --> "Gestionar Perfil"
-    Usuario --> "Registrarse en el sistema"
+    U --> (Iniciar Sesión)
+    U --> (Seleccionar exámenes para practicar)
+    U --> (Consultar institutos de certificación)
+    U --> (Visualizar fechas de exámenes)
+    U --> (Comparar precios de Exámenes)
+    U --> (Acceder a recursos de preparación)
+    U --> (Gestionar Perfil)
+    U --> (Registrarse en el sistema)
 
-    %% Casos de uso del módulo de administración
-    admin --> "Actualizar información de institutos y fechas de exámenes"
-    admin --> "Verificar y actualizar precios de exámenes"
-    admin --> "Gestionar usuarios y seguridad"
-    admin --> "Administrar recursos de preparación"
+    Admin --> (Actualizar información de institutos y fechas de exámenes)
+    Admin --> (Verificar y actualizar precios de exámenes)
+    Admin --> (Gestionar usuarios y seguridad)
+    Admin --> (Administrar recursos de preparación)
 
-    %% Casos de uso del módulo de seguridad
-    seguridad --> "Validar identidad de usuario"
-    seguridad --> "Verificar intentos de acceso y autenticación"
-
-    %% Relación de módulos
-    "Iniciar Sesión" --> "Módulo de Usuario"
-    "Seleccionar exámenes para practicar" --> "Módulo de Usuario"
-    "Consultar institutos de certificación" --> "Módulo de Usuario"
-    "Visualizar fechas de exámenes" --> "Módulo de Usuario"
-    "Comparar precios de Exámenes" --> "Módulo de Usuario"
-    "Acceder a recursos de preparación" --> "Módulo de Usuario"
-    "Gestionar Perfil" --> "Módulo de Usuario"
-    "Registrarse en el sistema" --> "Módulo de Usuario"
-
-    "Actualizar información de institutos y fechas de exámenes" --> "Módulo de Administración"
-    "Verificar y actualizar precios de exámenes" --> "Módulo de Administración"
-    "Gestionar usuarios y seguridad" --> "Módulo de Administración"
-    "Administrar recursos de preparación" --> "Módulo de Administración"
-
-    "Validar identidad de usuario" --> "Módulo de Seguridad"
-    "Verificar intentos de acceso y autenticación" --> "Módulo de Seguridad"
+    Seguridad --> (Validar identidad de usuario)
+    Seguridad --> (Verificar intentos de acceso y autenticación)
 
 
 
