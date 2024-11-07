@@ -171,15 +171,28 @@ Video :
 
 
 ```mermaid
+%% Diagrama de Casos de Uso - Sistema de Examen
 graph TD
 
-%% Diagrama de casos de uso - Sistema de Examen
+    %% Definición de actores
+    Usuario[Usuario] --> "Iniciar Sesión"
+    Usuario --> "Seleccionar exámenes para practicar"
+    Usuario --> "Consultar institutos de certificación"
+    Usuario --> "Visualizar fechas de exámenes"
+    Usuario --> "Comparar precios de Exámenes"
+    Usuario --> "Acceder a recursos de preparación"
+    Usuario --> "Gestionar Perfil"
+    Usuario --> "Registrarse en el sistema"
 
-actor Usuario
-actor "Sistema de administración" as admin
-actor "Sistema de seguridad" as seguridad
+    admin["Sistema de administración"] --> "Actualizar información de institutos y fechas de exámenes"
+    admin --> "Verificar y actualizar precios de exámenes"
+    admin --> "Gestionar usuarios y seguridad"
+    admin --> "Administrar recursos de preparación"
 
-classDiagram
+    seguridad["Sistema de seguridad"] --> "Validar identidad de usuario"
+    seguridad --> "Verificar intentos de acceso y autenticación"
+
+    %% Definición de módulos
     class "Módulo de Usuario" {
         +Iniciar Sesión
         +Seleccionar exámenes para practicar
@@ -203,23 +216,11 @@ classDiagram
         +Verificar intentos de acceso y autenticación
     }
 
-%% Relaciones entre actores y módulos
-Usuario --> "Iniciar Sesión"
-Usuario --> "Seleccionar exámenes para practicar"
-Usuario --> "Consultar institutos de certificación"
-Usuario --> "Visualizar fechas de exámenes"
-Usuario --> "Comparar precios de Exámenes"
-Usuario --> "Acceder a recursos de preparación"
-Usuario --> "Gestionar Perfil"
-Usuario --> "Registrarse en el sistema"
+    %% Relacionar actores con módulos
+    Usuario --> "Módulo de Usuario"
+    admin --> "Módulo de Administración"
+    seguridad --> "Módulo de Seguridad"
 
-admin --> "Actualizar información de institutos y fechas de exámenes"
-admin --> "Verificar y actualizar precios de exámenes"
-admin --> "Gestionar usuarios y seguridad"
-admin --> "Administrar recursos de preparación"
-
-seguridad --> "Validar identidad de usuario"
-seguridad --> "Verificar intentos de acceso y autenticación"
 
 
 ```
