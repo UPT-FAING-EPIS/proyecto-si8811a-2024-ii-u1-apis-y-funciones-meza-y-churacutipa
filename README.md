@@ -170,49 +170,7 @@ Video :
 
 
 
-```mermaid
-graph TD
 
-%% Definición de actores
-Usuario[Usuario]
-Admin["Sistema de administración"]
-Seguridad["Sistema de seguridad"]
-
-%% Casos de uso
-IniciarSesion["Iniciar Sesión"]
-SeleccionarExamenes["Seleccionar exámenes para practicar"]
-ConsultarInstitutos["Consultar institutos de certificación"]
-VisualizarFechas["Visualizar fechas de exámenes"]
-CompararPrecios["Comparar precios de Exámenes"]
-AccederRecursos["Acceder a recursos de preparación"]
-GestionarPerfil["Gestionar Perfil"]
-Registrarse["Registrarse en el sistema"]
-
-ActualizarInfo["Actualizar información de institutos y fechas de exámenes"]
-VerificarPrecios["Verificar y actualizar precios de exámenes"]
-GestionarUsuarios["Gestionar usuarios y seguridad"]
-AdministrarRecursos["Administrar recursos de preparación"]
-
-ValidarIdentidad["Validar identidad de usuario"]
-VerificarIntentos["Verificar intentos de acceso y autenticación"]
-
-%% Relaciones entre actores y casos de uso
-Usuario --> IniciarSesion
-Usuario --> SeleccionarExamenes
-Usuario --> ConsultarInstitutos
-Usuario --> VisualizarFechas
-Usuario --> CompararPrecios
-Usuario --> AccederRecursos
-Usuario --> GestionarPerfil
-Usuario --> Registrarse
-
-Admin --> ActualizarInfo
-Admin --> VerificarPrecios
-Admin --> GestionarUsuarios
-Admin --> AdministrarRecursos
-
-Seguridad --> ValidarIdentidad
-Seguridad --> VerificarIntentos
 
 
 
