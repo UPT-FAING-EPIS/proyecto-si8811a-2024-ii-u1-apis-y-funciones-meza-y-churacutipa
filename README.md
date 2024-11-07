@@ -171,29 +171,48 @@ Video :
 
 
 ```mermaid
-%% Diagrama de Casos de Uso - Sistema de Examen
-%% Usando la sintaxis correcta para casos de uso en Mermaid
+graph TD
 
-usecaseDiagram
-    actor Usuario as U
-    actor "Sistema de administración" as Admin
-    actor "Sistema de seguridad" as Seguridad
+%% Definición de actores
+Usuario[Usuario]
+Admin["Sistema de administración"]
+Seguridad["Sistema de seguridad"]
 
-    U --> (Iniciar Sesión)
-    U --> (Seleccionar exámenes para practicar)
-    U --> (Consultar institutos de certificación)
-    U --> (Visualizar fechas de exámenes)
-    U --> (Comparar precios de Exámenes)
-    U --> (Acceder a recursos de preparación)
-    U --> (Gestionar Perfil)
-    U --> (Registrarse en el sistema)
+%% Casos de uso
+IniciarSesion["Iniciar Sesión"]
+SeleccionarExamenes["Seleccionar exámenes para practicar"]
+ConsultarInstitutos["Consultar institutos de certificación"]
+VisualizarFechas["Visualizar fechas de exámenes"]
+CompararPrecios["Comparar precios de Exámenes"]
+AccederRecursos["Acceder a recursos de preparación"]
+GestionarPerfil["Gestionar Perfil"]
+Registrarse["Registrarse en el sistema"]
 
-    Admin --> (Actualizar información de institutos y fechas de exámenes)
-    Admin --> (Verificar y actualizar precios de exámenes)
-    Admin --> (Gestionar usuarios y seguridad)
-    Admin --> (Administrar recursos de preparación)
+ActualizarInfo["Actualizar información de institutos y fechas de exámenes"]
+VerificarPrecios["Verificar y actualizar precios de exámenes"]
+GestionarUsuarios["Gestionar usuarios y seguridad"]
+AdministrarRecursos["Administrar recursos de preparación"]
 
-    Seguridad --> (Validar identidad de usuario)
-    Seguridad --> (Verificar intentos de acceso y autenticación)
+ValidarIdentidad["Validar identidad de usuario"]
+VerificarIntentos["Verificar intentos de acceso y autenticación"]
+
+%% Relaciones entre actores y casos de uso
+Usuario --> IniciarSesion
+Usuario --> SeleccionarExamenes
+Usuario --> ConsultarInstitutos
+Usuario --> VisualizarFechas
+Usuario --> CompararPrecios
+Usuario --> AccederRecursos
+Usuario --> GestionarPerfil
+Usuario --> Registrarse
+
+Admin --> ActualizarInfo
+Admin --> VerificarPrecios
+Admin --> GestionarUsuarios
+Admin --> AdministrarRecursos
+
+Seguridad --> ValidarIdentidad
+Seguridad --> VerificarIntentos
+
 
 
